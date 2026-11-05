@@ -4,183 +4,495 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>O Menino que Descobriu o Vento</title>
+<title>O Menino que Descobriu o Vento | Museu Virtual</title>
 <style>
-*{box-sizing:border-box}
-body{margin:0;background:#101b25;color:white;font-family:Arial,sans-serif}
-header{
- background:linear-gradient(120deg,#182c36,#496b4b);
- padding:65px 20px;text-align:center
+:root {
+ --ink:#17251e;
+ --green:#24543d;
+ --lime:#c5d99a;
+ --cream:#f5f0df;
+ --gold:#d99c42;
+ --muted:#657267;
 }
-header h1{font-size:35px}
-header p{font-size:17px;color:#d5e3d1}
-nav{background:#172832;padding:15px;display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
-button{
- background:#71945e;color:white;border:0;
- padding:13px 17px;border-radius:8px;
- font-weight:bold;cursor:pointer
+* {box-sizing:border-box}
+html {scroll-behavior:smooth}
+body {
+ margin:0;
+ background:var(--cream);
+ color:var(--ink);
+ font-family:Georgia,serif;
 }
-button:hover{background:#91b87b}
-main{max-width:1000px;margin:auto;padding:20px}
-section{background:#1c303b;padding:25px;border-radius:15px;margin:22px 0}
-h2{color:#a7d28c}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:15px}
-.card{background:#2a4149;padding:20px;border-radius:12px;text-align:center}
-.card h3{color:#b5d99b}
-.info{display:none;background:#14272d;padding:17px;margin-top:15px;border-radius:9px;line-height:1.6;text-align:left}
-.hero{font-size:55px}
-footer{text-align:center;background:#172832;padding:25px;color:#ccc}
+header {
+ min-height:88vh;
+ display:flex;
+ align-items:center;
+ padding:7vw;
+ color:white;
+ background:linear-gradient(90deg,rgba(11,35,25,.9),rgba(11,35,25,.28)),
+ url('https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=1800&q=85') center/cover;
+}
+.hero {max-width:760px}
+.eyebrow {
+ font:700 12px Arial;
+ letter-spacing:3px;
+ text-transform:uppercase;
+ color:var(--lime);
+}
+h1 {
+ font-size:clamp(3rem,8vw,6.7rem);
+ line-height:.96;
+ margin:20px 0;
+}
+header p {
+ font:18px/1.6 Arial;
+ max-width:590px;
+}
+.btn {
+ display:inline-block;
+ border:0;
+ background:var(--gold);
+ color:#17251e;
+ padding:14px 22px;
+ border-radius:4px;
+ font:700 14px Arial;
+ text-decoration:none;
+ cursor:pointer;
+ margin-top:14px;
+}
+nav {
+ position:sticky;
+ top:0;
+ z-index:5;
+ background:#17251e;
+ display:flex;
+ gap:8px;
+ justify-content:center;
+ flex-wrap:wrap;
+ padding:12px;
+}
+nav a {
+ color:white;
+ text-decoration:none;
+ font:12px Arial;
+ padding:9px 12px;
+ border-radius:3px;
+}
+nav a:hover {background:#37664b}
+main {
+ max-width:1120px;
+ margin:auto;
+ padding:55px 22px;
+}
+.intro {
+ font-size:1.3rem;
+ line-height:1.7;
+ max-width:850px;
+}
+.kicker {
+ font:700 12px Arial;
+ letter-spacing:2px;
+ color:var(--green);
+ text-transform:uppercase;
+}
+h2 {
+ font-size:clamp(2rem,5vw,3.3rem);
+ margin:10px 0 20px;
+}
+.grid {
+ display:grid;
+ grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+ gap:18px;
+ margin:28px 0;
+}
+.card {
+ background:#fffaf0;
+ border:1px solid #ded8c6;
+ border-radius:8px;
+ overflow:hidden;
+}
+.card button {
+ width:100%;
+ height:100%;
+ text-align:left;
+ padding:24px;
+ background:none;
+ border:0;
+ color:inherit;
+ cursor:pointer;
+}
+.card button:hover {background:#e9efdf}
+.num {
+ font:700 12px Arial;
+ color:var(--gold);
+}
+.card h3 {
+ font-size:1.45rem;
+ margin:12px 0;
+}
+.card p {
+ font:15px/1.55 Arial;
+ color:var(--muted);
+}
+.panel {
+ display:none;
+ background:#e6ebdc;
+ border-left:5px solid var(--green);
+ padding:25px;
+ margin:18px 0;
+ border-radius:4px;
+ font:16px/1.7 Arial;
+}
+.panel.open {display:block}
+.panel h3 {
+ font:700 22px Georgia;
+ margin-top:0;
+}
+.split {
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:30px;
+ align-items:center;
+ margin:55px 0;
+}
+.split img {
+ width:100%;
+ border-radius:8px;
+ max-height:360px;
+ object-fit:cover;
+}
+.note {
+ background:var(--green);
+ color:white;
+ padding:35px;
+ border-radius:8px;
+ font-size:1.35rem;
+ line-height:1.55;
+ margin:45px 0;
+}
+.note small {
+ display:block;
+ font:12px Arial;
+ letter-spacing:2px;
+ color:var(--lime);
+ margin-bottom:12px;
+}
+.timeline {
+ border-left:3px solid var(--gold);
+ padding-left:22px;
+ margin:25px 0;
+}
+.timeline p {
+ font:16px/1.6 Arial;
+ margin:0 0 24px;
+}
+.timeline strong {color:var(--green)}
+footer {
+ text-align:center;
+ background:#17251e;
+ color:#e9eddf;
+ padding:38px 20px;
+ font:14px/1.6 Arial;
+}
+@media(max-width:700px) {
+ .split {grid-template-columns:1fr}
+ header {min-height:78vh}
+ nav {gap:0}
+ nav a {padding:9px 7px;font-size:11px}
+}
 </style>
 </head>
+
 <body>
 
 <header>
-<div class="hero">🌬️</div>
-<p>EXPOSIÇÃO CIENTÍFICA • 9º ANO</p>
-<h1>O MENINO QUE DESCOBRIU O VENTO</h1>
-<p>Uma história de ciência, criatividade, esperança e transformação.</p>
+ <div class="hero">
+  <div class="eyebrow">Museu virtual • Ciências • 9º ano</div>
+  <h1>O Menino que Descobriu o Vento</h1>
+  <p>
+   Uma história real sobre curiosidade, conhecimento e criatividade.
+   Explore como a ciência pode transformar dificuldades em possibilidades.
+  </p>
+  <a class="btn" href="#exposicao">ENTRAR NA EXPOSIÇÃO ↓</a>
+ </div>
 </header>
 
 <nav>
-<button onclick="ir('inicio')">Início</button>
-<button onclick="ir('historia')">A história</button>
-<button onclick="ir('personagens')">Personagens</button>
-<button onclick="ir('ciencia')">Ciência</button>
-<button onclick="ir('atualidade')">Atualidade</button>
+ <a href="#historia">A história</a>
+ <a href="#exposicao">Exposição</a>
+ <a href="#livro-filme">Livro e filme</a>
+ <a href="#ciencia">A ciência</a>
+ <a href="#atualidade">Atualidade</a>
 </nav>
 
 <main>
 
-<section id="inicio">
-<h2>🏛️ Bem-vindo ao Museu Virtual!</h2>
-<p>Entre no universo de William Kamkwamba e descubra como a curiosidade, o conhecimento e a criatividade podem transformar a realidade de uma comunidade.</p>
-<p>Explore as salas da exposição e clique nos elementos para descobrir mais!</p>
-</section>
-
 <section id="historia">
-<h2>📖 Conheça a história</h2>
-<p>A história acontece no Malawi, país africano que enfrenta dificuldades econômicas e uma grave seca. William é um garoto curioso que gosta de aprender e estudar ciência.</p>
-<p>Quando sua família enfrenta dificuldades para conseguir alimentos, ele utiliza seus conhecimentos e materiais reaproveitados para construir um moinho de vento capaz de gerar energia e ajudar sua comunidade.</p>
+ <div class="kicker">01 • Conheça a história</div>
+ <h2>Uma ideia pode mudar tudo</h2>
+
+ <p class="intro">
+ William Kamkwamba é um jovem do Malawi, na África, que enfrentou
+ a seca e a falta de recursos em sua comunidade. Mesmo com dificuldades
+ para continuar os estudos, ele não desistiu de aprender.
+ Usando livros, observação e criatividade, desenvolveu um moinho
+ de vento para ajudar sua família a ter acesso à eletricidade e à água.
+ </p>
+
+ <div class="note">
+  <small>IDEIA CENTRAL</small>
+  O conhecimento não está apenas dentro da sala de aula:
+  ele também nasce da observação, da curiosidade e da vontade
+  de resolver problemas reais.
+ </div>
 </section>
 
-<section id="personagens">
-<h2>👥 Personagens e suas histórias</h2>
-<div class="grid">
+<section id="exposicao">
+ <div class="kicker">02 • Explore as salas</div>
+ <h2>Toque nos objetos da exposição</h2>
 
-<div class="card">
-<h3>William Kamkwamba</h3>
-<button onclick="abrir('w')">Conhecer personagem</button>
-<div class="info" id="w">William é o protagonista. Inteligente e curioso, ele utiliza os conhecimentos adquiridos nos livros para desenvolver uma solução para os problemas de sua comunidade.</div>
-</div>
+ <p class="intro">
+ Cada objeto conta uma parte da história.
+ Clique nos cartões para descobrir as informações.
+ </p>
 
-<div class="card">
-<h3>Trywell</h3>
-<button onclick="abrir('t')">Conhecer personagem</button>
-<div class="info" id="t">Trywell é o pai de William. Ele representa as dificuldades enfrentadas pelos agricultores e a preocupação de sustentar a família.</div>
-</div>
+ <div class="grid">
 
-<div class="card">
-<h3>Família de William</h3>
-<button onclick="abrir('f')">Conhecer</button>
-<div class="info" id="f">A família enfrenta a fome e as dificuldades provocadas pela seca, mas também representa a importância da união e da esperança.</div>
-</div>
+  <article class="card">
+   <button onclick="show('moinho')">
+    <span class="num">SALA 01</span>
+    <h3>🌬️ O moinho de vento</h3>
+    <p>Descubra como a ideia de William ganhou forma.</p>
+   </button>
+  </article>
 
-</div>
+  <article class="card">
+   <button onclick="show('seca')">
+    <span class="num">SALA 02</span>
+    <h3>☀️ A seca</h3>
+    <p>Entenda o desafio enfrentado pela comunidade.</p>
+   </button>
+  </article>
+
+  <article class="card">
+   <button onclick="show('livros')">
+    <span class="num">SALA 03</span>
+    <h3>📚 Os livros</h3>
+    <p>Veja por que estudar fez tanta diferença.</p>
+   </button>
+  </article>
+
+  <article class="card">
+   <button onclick="show('energia')">
+    <span class="num">SALA 04</span>
+    <h3>⚡ Energia</h3>
+    <p>Conheça a importância da eletricidade.</p>
+   </button>
+  </article>
+
+  <article class="card">
+   <button onclick="show('agua')">
+    <span class="num">SALA 05</span>
+    <h3>💧 Água</h3>
+    <p>Saiba como a tecnologia pode ajudar no acesso à água.</p>
+   </button>
+  </article>
+
+  <article class="card">
+   <button onclick="show('comunidade')">
+    <span class="num">SALA 06</span>
+    <h3>🤝 Comunidade</h3>
+    <p>Entenda como uma invenção pode beneficiar muitas pessoas.</p>
+   </button>
+  </article>
+
+ </div>
+
+ <div id="moinho" class="panel">
+  <h3>🌬️ O moinho de vento</h3>
+  William construiu um moinho usando materiais disponíveis
+  e conhecimentos que encontrou em livros. O vento movimenta
+  as pás, que giram um mecanismo capaz de produzir energia.
+  Sua invenção mostrou como criatividade e ciência podem trabalhar juntas.
+ </div>
+
+ <div id="seca" class="panel">
+  <h3>☀️ A seca</h3>
+  A falta de chuva prejudicou as plantações e dificultou
+  a vida de muitas famílias. A história mostra como as mudanças
+  no clima e a falta de recursos podem afetar a alimentação
+  e a rotina de uma comunidade.
+ </div>
+
+ <div id="livros" class="panel">
+  <h3>📚 Os livros</h3>
+  Mesmo enfrentando obstáculos para estudar, William procurou
+  conhecimento em livros. Eles ajudaram o jovem a compreender
+  conceitos científicos e imaginar uma solução para o problema
+  de sua família.
+ </div>
+
+ <div id="energia" class="panel">
+  <h3>⚡ Energia</h3>
+  A eletricidade pode iluminar casas, permitir o uso de aparelhos
+  e apoiar atividades do dia a dia. O projeto de William demonstra
+  como fontes renováveis podem contribuir para comunidades com
+  pouco acesso à rede elétrica.
+ </div>
+
+ <div id="agua" class="panel">
+  <h3>💧 Água</h3>
+  Com energia, é possível movimentar bombas que ajudam a retirar
+  água de poços. O acesso à água é essencial para beber, cozinhar,
+  cuidar da higiene e cultivar alimentos.
+ </div>
+
+ <div id="comunidade" class="panel">
+  <h3>🤝 Comunidade</h3>
+  Uma solução criada para enfrentar um problema familiar pode
+  inspirar e beneficiar outras pessoas. A história valoriza
+  a colaboração, a persistência e o conhecimento compartilhado.
+ </div>
+
+</section>
+
+<section id="livro-filme">
+ <div class="kicker">03 • Duas formas de contar</div>
+ <h2>O livro e o filme</h2>
+
+ <div class="split">
+  <div>
+   <h3>📖 O livro</h3>
+   <p class="intro">
+    O livro autobiográfico apresenta a trajetória de William
+    com detalhes sobre sua infância, sua família, sua comunidade
+    e o caminho que percorreu até desenvolver o moinho.
+    A leitura permite conhecer melhor seus pensamentos e aprendizados.
+   </p>
+  </div>
+
+  <div>
+   <h3>🎬 O filme</h3>
+   <p class="intro">
+    A adaptação cinematográfica transforma essa trajetória em imagens
+    e cenas. Ela destaca os desafios enfrentados pela família
+    e a construção da invenção, tornando a história acessível
+    por meio da linguagem do cinema.
+   </p>
+  </div>
+ </div>
+
+ <div class="panel open">
+  <h3>O que as duas versões têm em comum?</h3>
+  As duas mostram a importância da educação, da criatividade
+  e da persistência. O livro permite acompanhar a experiência
+  em forma de relato, enquanto o filme representa visualmente
+  os acontecimentos. Algumas cenas e detalhes podem ser diferentes
+  por causa da adaptação.
+ </div>
 </section>
 
 <section id="ciencia">
-<h2>🔬 A ciência por trás da história</h2>
-<p>William utiliza conhecimentos científicos para transformar o vento em uma fonte de energia.</p>
-<div class="grid">
+ <div class="kicker">04 • Ciência na prática</div>
+ <h2>Como o vento pode gerar energia?</h2>
 
-<div class="card">
-<h3>🌬️ Energia eólica</h3>
-<button onclick="abrir('e')">Descobrir</button>
-<div class="info" id="e">É a energia obtida através da força dos ventos. O movimento do vento pode movimentar as pás de um moinho e ser transformado em energia mecânica ou elétrica.</div>
-</div>
+ <div class="split">
+  <img
+   src="https://images.unsplash.com/photo-1466611653911-95081537e5b7?auto=format&fit=crop&w=1000&q=85"
+   alt="Turbinas eólicas em uma paisagem"
+  >
 
-<div class="card">
-<h3>⚙️ Moinho de vento</h3>
-<button onclick="abrir('m')">Descobrir</button>
-<div class="info" id="m">O moinho utiliza pás que giram com o vento. Na história, William constrói um equipamento para gerar eletricidade e ajudar sua família.</div>
-</div>
+  <div>
+   <p class="intro">
+    O vento movimenta as pás de uma turbina ou moinho.
+    Esse movimento gira um eixo e pode ser usado para acionar
+    um gerador elétrico ou outro mecanismo, como uma bomba de água.
+   </p>
 
-<div class="card">
-<h3>💡 Eletricidade</h3>
-<button onclick="abrir('el')">Descobrir</button>
-<div class="info" id="el">A eletricidade é uma forma de energia utilizada para iluminar ambientes, carregar aparelhos e movimentar equipamentos.</div>
-</div>
+   <p style="font:15px/1.6 Arial;color:var(--muted)">
+    A energia eólica é renovável porque utiliza o movimento
+    natural do ar. Sua produção depende da presença e da
+    intensidade dos ventos.
+   </p>
+  </div>
+ </div>
 
-<div class="card">
-<h3>♻️ Reciclagem</h3>
-<button onclick="abrir('r')">Descobrir</button>
-<div class="info" id="r">William aproveita materiais encontrados para construir seu projeto. Isso mostra como a reutilização pode estimular a criatividade e reduzir o desperdício.</div>
-</div>
-
-</div>
-</section>
-
-<section>
-<h2>🎬 Livro e filme: quais são as diferenças?</h2>
-<div class="grid">
-<div class="card">
-<h3>📚 O livro</h3>
-<button onclick="abrir('livro')">Ler informações</button>
-<div class="info" id="livro">O livro apresenta a trajetória de William, suas experiências, sua infância, os desafios enfrentados e o desenvolvimento de sua invenção. É uma autobiografia que mostra sua história com mais detalhes.</div>
-</div>
-<div class="card">
-<h3>🎥 O filme</h3>
-<button onclick="abrir('filme')">Ler informações</button>
-<div class="info" id="filme">O filme apresenta visualmente os desafios de William, a seca, os conflitos familiares e a construção do moinho, permitindo acompanhar emocionalmente sua trajetória.</div>
-</div>
-</div>
+ <div class="timeline">
+  <p><strong>1. O vento sopra:</strong> o ar em movimento atinge as pás.</p>
+  <p><strong>2. As pás giram:</strong> o movimento é transmitido pelo eixo.</p>
+  <p><strong>3. O mecanismo funciona:</strong> pode gerar eletricidade ou movimentar uma bomba.</p>
+ </div>
 </section>
 
 <section id="atualidade">
-<h2>🌍 A história nos dias atuais</h2>
-<p>A história continua atual porque muitas comunidades enfrentam problemas relacionados à falta de água, energia, alimentação e oportunidades.</p>
-<div class="grid">
-<div class="card">
-<h3>💧 Falta de água</h3>
-<button onclick="abrir('agua')">Saiba mais</button>
-<div class="info" id="agua">A falta de água prejudica a agricultura, a saúde e a qualidade de vida. A tecnologia pode ajudar no armazenamento e no uso consciente desse recurso.</div>
-</div>
-<div class="card">
-<h3>🌱 Sustentabilidade</h3>
-<button onclick="abrir('sust')">Saiba mais</button>
-<div class="info" id="sust">A sustentabilidade busca utilizar os recursos naturais de maneira responsável, preservando o meio ambiente para as próximas gerações.</div>
-</div>
-<div class="card">
-<h3>🚀 Tecnologia</h3>
-<button onclick="abrir('tec')">Saiba mais</button>
-<div class="info" id="tec">A ciência e a tecnologia podem desenvolver soluções para problemas sociais, ambientais e econômicos.</div>
-</div>
-</div>
-</section>
+ <div class="kicker">05 • A história nos dias de hoje</div>
+ <h2>Por que essa história ainda importa?</h2>
 
-<section>
-<h2>💭 Nossa reflexão</h2>
-<p>A história de William ensina que o conhecimento pode transformar vidas. Mesmo diante de grandes dificuldades, a curiosidade, a persistência e a educação podem ajudar a encontrar soluções para problemas reais.</p>
-<p><strong>Uma grande transformação pode começar com uma pequena ideia!</strong></p>
+ <p class="intro">
+  Atualmente, muitas comunidades ainda enfrentam desafios
+  relacionados à falta de água, energia, alimentação e acesso
+  à educação. A história de William nos faz refletir sobre
+  a importância de investir em ciência, tecnologia,
+  sustentabilidade e oportunidades de aprendizagem.
+ </p>
+
+ <div class="grid">
+
+  <article class="card">
+   <div style="padding:24px">
+    <h3>🌱 Sustentabilidade</h3>
+    <p>Buscar soluções que aproveitem recursos naturais e reduzam impactos ambientais.</p>
+   </div>
+  </article>
+
+  <article class="card">
+   <div style="padding:24px">
+    <h3>🔬 Educação científica</h3>
+    <p>Aprender ciência ajuda a compreender problemas e desenvolver soluções.</p>
+   </div>
+  </article>
+
+  <article class="card">
+   <div style="padding:24px">
+    <h3>🌍 Desigualdade</h3>
+    <p>O acesso à água, energia e educação precisa chegar a todas as comunidades.</p>
+   </div>
+  </article>
+
+ </div>
+
+ <div class="note">
+  <small>PARA REFLETIR</small>
+  Se uma ideia simples pode transformar a realidade de uma família,
+  imagine o que a educação e a ciência, quando acessíveis a todos,
+  podem fazer pela sociedade.
+ </div>
 </section>
 
 </main>
 
 <footer>
-<p>🌬️ O MENINO QUE DESCOBRIU O VENTO</p>
-<p>Projeto escolar • 9º Ano</p>
-<p>Museu Virtual Interativo</p>
+ <strong>O Menino que Descobriu o Vento</strong><br>
+ Museu virtual • Trabalho escolar • 9º ano<br>
+ <span style="color:#c5d99a">Aprender, criar e transformar.</span>
 </footer>
 
 <script>
-function abrir(id){
-let elemento=document.getElementById(id);
-elemento.style.display=
-elemento.style.display==='block'?'none':'block';
-}
-function ir(id){
-document.getElementById(id).scrollIntoView({behavior:'smooth'});
+function show(id) {
+ document.querySelectorAll('.panel:not(.open)').forEach(p => {
+  p.classList.remove('open');
+ });
+
+ const panel = document.getElementById(id);
+
+ if(panel) {
+  panel.classList.add('open');
+  panel.scrollIntoView({
+   behavior:'smooth',
+   block:'center'
+  });
+ }
 }
 </script>
+
 </body>
 </html>
